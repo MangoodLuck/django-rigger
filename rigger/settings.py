@@ -20,13 +20,13 @@ from django.conf import settings
 from django.test.signals import setting_changed
 from django.utils.module_loading import import_string
 
-from rest_framework import ISO_8601
 
 DEFAULTS = {
     'DEFAULT_RENDERER_CLASSES': [
         'rigger.renderers.JSONRenderer',
         'rigger.renderers.BrowsableAPIRenderer',
     ],
+    'ADMIN_AUTHORIZATION': 'ForeverAdminToken',
 }
 
 
