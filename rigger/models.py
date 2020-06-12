@@ -2,6 +2,8 @@ from django.db import models
 from datetime import datetime
 from rigger.utils import timestamp
 
+TIME_FORMET = "%Y-%m-%d %H:%M:%S"
+
 
 class CommonDateModel(models.Model):
     """
@@ -29,10 +31,10 @@ class CommonDateModel(models.Model):
         abstract = True
 
     def created(self):
-        return str(datetime.strftime(self.created_at, "%Y-%m-%d %H:%M:%S"))
+        return str(datetime.strftime(self.created_at, TIME_FORMET))
 
     def updated(self):
-        return str(datetime.strftime(self.updated_at, "%Y-%m-%d %H:%M:%S"))
+        return str(datetime.strftime(self.updated_at, TIME_FORMET))
 
     def logical_delete(self):
         self.is_delete = timestamp()
