@@ -46,7 +46,7 @@ class DestroyMixin(DestroyModelClass):
 
     def judge_destroy(self):
         """
-        if your don't wanna to destory , please return False
+        if your don't wanna to destory , please return True
         :return: True or False
         """
         pass
