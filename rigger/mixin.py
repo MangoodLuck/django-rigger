@@ -2,7 +2,7 @@ from rest_framework import status
 from abc import ABCMeta, abstractmethod
 from rigger.response import APIResponse
 from rigger.settings import api_settings
-
+from rest_framework.mixins import UpdateModelMixin
 
 class DestroyModelClass(metaclass=ABCMeta):
     """
@@ -50,3 +50,43 @@ class DestroyMixin(DestroyModelClass):
         :return: True or False
         """
         pass
+
+
+class UpdateMixin(UpdateModelMixin):
+    """
+    Update a model instance response like:
+    {
+        "flag": 20000,
+        "msg": "success",
+        "data": {
+            "name": {
+                "old": "device3",
+                "new": "device-3"
+            }
+        }
+    }
+    """
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', True)  # default patch
+        instance = self.get_object()
+
+        update_fields = {}
+        for field in request.data.items():
+            _field, _ = field
+            update_fields[_field] = {"old": getattr(instance, _field)}
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        for field in request.data.items():
+            _field, _value = field
+            update_fields[_field]["new"] = _value
+
+        return APIResponse(data_status=api_settings.DATA_STATUS["success"],
+                           data=update_fields,
+                           status=status.HTTP_201_CREATED)
