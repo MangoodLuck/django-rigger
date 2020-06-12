@@ -12,6 +12,10 @@ I **highly recommend** and only officially support the latest patch release of e
 # Installation
 Install using pip...
 
+```
+pip install django-rigger
+```
+
 Add 'rigger' to your INSTALLED_APPS setting.
 
 ```
