@@ -27,6 +27,7 @@ DEFAULTS = {
         'rigger.renderers.BrowsableAPIRenderer',
     ],
     'ADMIN_AUTHORIZATION': 'ForeverAdminToken',
+    'DATA_STATUS': {"succsess": 20000, "failed": 50000}
 }
 
 
