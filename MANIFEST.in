@@ -1,0 +1,11 @@
+include *.in
+include *.ini
+include *.rst
+include *.md
+include requirements.txt
+
+global-exclude *.so *.dylib
+global-exclude __pycache__ *.py[cod]
+
+
+
