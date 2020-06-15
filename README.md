@@ -4,7 +4,11 @@
 
 ---
 
+.. image:: https://d25lcipzij17d.cloudfront.net/badge.svg?id=py&type=6&v=1.0.3&x2=0
+    :target: https://pypi.org/project/django-rigger/
+
 # Requirements
+
 - Python (3.5, 3.6, 3.7, 3.8)
 - Django (2.1, 2.2, 3.0)
 
